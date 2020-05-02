@@ -1,6 +1,5 @@
 import React from "react";
 import { Switch, Route, Link, NavLink } from "react-router-dom";
-import AboutPage from "../pages/AboutPage";
 
 export default function NavBar() {
   return (
@@ -25,7 +24,7 @@ export default function NavBar() {
           </li>
           <li>
             <NavLink
-              to="../pages/DiscoverMovies"
+              to="../pages/DiscoverMoviesPage"
               activeStyle={{ fontWeight: "bold", color: "pink" }}
             >
               Discover Movies
