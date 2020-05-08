@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import axios from "axios";
-import Movies from "../components/Movies";
 import { Link } from "react-router-dom";
 
 export default function DiscoverMoviesPage() {
@@ -37,10 +36,10 @@ export default function DiscoverMoviesPage() {
   } else if (searchState.status === "done") {
     displayMovies = searchState.data.map((movie) => {
       return (
-        <div className="movie">
-          <Link to={`/movie/${movie.imdbID}`}>
-            <h4 key={movie.imdbID}>{movie.Title}</h4>
-          </Link>
+        <div className="movie" key={movie.imdbID}>
+          {/* <Link to={`/movie/${movie.imdbID}`}> */}
+          <h2>{movie.Title}</h2>
+          {/* </Link> */}
           <p> Year of release: {movie.Year}</p>
           <img className="movie_img" alt="movieposter" src={movie.Poster} />
         </div>
