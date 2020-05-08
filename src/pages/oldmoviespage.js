@@ -1,50 +1,54 @@
 import React, { useState } from "react";
+import Timeout from "await-timeout";
 import axios from "axios";
 import Movies from "../components/Movies";
-import { Link } from "react-router-dom";
 
 export default function DiscoverMoviesPage() {
   const [searchText, set_searchText] = useState("");
   const searching = [
-    { status: "idle", data: null },
-    { status: "searching...", data: null },
-    { status: "done", data: null },
+    { status: "idle" },
+    { status: "searching..." },
+    { status: "done", data: "some data" },
   ];
 
   const [searchState, set_searchState] = useState(searching[0]);
-  console.log("whats the state? (1)", searchState);
+  console.log("whats the state?", searchState);
 
   const search = async () => {
     // setting state to searching
     set_searchState(searching[1]);
-    console.log("whats the state now? (2)", searchState);
+    console.log("whats the state now?", searchState);
 
     console.log("Searching for movies matching query:", searchText);
+    // Best practice: encode the string so that special characters
+    //  like '&' and '?' don't accidentally mess up the URL
     const queryParam = encodeURIComponent(searchText);
+
+    // // Option A: use the browser-native fetch function
+    // const data = await fetch(
+    //   `https://omdbapi.com/?apikey=b3d9013d&s=${queryParam}`
+    // ).then((r) => r.json());
+
+    // Option B: use the `axios` library like we did on Tuesday
     const data = await axios.get(
       `https://omdbapi.com/?apikey=5ffaab21&s=${queryParam}`
     );
 
     console.log("Success!", data.data.Search);
 
-    set_searchState({ ...searching[2], data: data.data.Search });
-  };
-  console.log("final state: (3)", searchState);
+    // const searchResult = { ...searching[2], data: data.data.Search };
+    // console.log("lets see if it worked:", searchResult);
 
-  let displayMovies;
-  if (searchState.status === "searching...") {
-    displayMovies = "searching...";
-  } else if (searchState.status === "done") {
-    displayMovies = searchState.data.map((movie) => {
-      return (
-        <div className="movie">
-          <Link to={`/movie/${movie.imdbID}`}>
-            <h4 key={movie.imdbID}>{movie.Title}</h4>
-          </Link>
-          <p> Year of release: {movie.Year}</p>
-          <img className="movie_img" alt="movieposter" src={movie.Poster} />
-        </div>
-      );
+    // setting state to done...how to add data in?
+    set_searchState({ ...searching[2], data: data.data.Search });
+    console.log("final state:", searchState);
+  };
+
+  function displayMovies() {
+    searchState.map((status) => {
+      if (status === true) {
+        return <Movies status={status.status} data={status.data} />;
+      }
     });
   }
 

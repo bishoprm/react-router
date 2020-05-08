@@ -16,7 +16,8 @@ export default function NavBar() {
           </li>
           <li>
             <NavLink
-              to="../pages/HomePage"
+              exact
+              to="../pages/"
               activeStyle={{ fontWeight: "bold", color: "pink" }}
             >
               Home Page
