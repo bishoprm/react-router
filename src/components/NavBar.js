@@ -25,7 +25,7 @@ export default function NavBar() {
           </li>
           <li>
             <NavLink
-              to="/DiscoverMoviesPage"
+              to="/discover"
               activeStyle={{ fontWeight: "bold", color: "pink" }}
             >
               Discover Movies

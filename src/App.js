@@ -12,14 +12,10 @@ function App() {
     <div className="App">
       <NavBar />
       <Switch>
-        <Route
-          exact
-          path="/DiscoverMoviesPage"
-          component={DiscoverMoviesPage}
-        />
+        <Route path="/discover/:searchtext?" component={DiscoverMoviesPage} />
         <Route path="/AboutPage" component={AboutPage} />
         <Route exact path="/" component={HomePage} />
-        <Route path="/DiscoverMoviesPage/:imdb_id" component={MoviePage} />
+        <Route path="/movie/:imdb_id" component={MoviePage} />
       </Switch>
     </div>
   );
