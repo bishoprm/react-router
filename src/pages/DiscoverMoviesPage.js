@@ -37,9 +37,9 @@ export default function DiscoverMoviesPage() {
     displayMovies = searchState.data.map((movie) => {
       return (
         <div className="movie" key={movie.imdbID}>
-          {/* <Link to={`/movie/${movie.imdbID}`}> */}
-          <h2>{movie.Title}</h2>
-          {/* </Link> */}
+          <Link to={`/DiscoverMoviesPage/${movie.imdbID}`}>
+            <h2>{movie.Title}</h2>
+          </Link>
           <p> Year of release: {movie.Year}</p>
           <img className="movie_img" alt="movieposter" src={movie.Poster} />
         </div>

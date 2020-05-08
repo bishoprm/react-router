@@ -5,6 +5,7 @@ import NavBar from "./components/NavBar";
 import DiscoverMoviesPage from "./pages/DiscoverMoviesPage";
 import AboutPage from "./pages/AboutPage";
 import HomePage from "./pages/HomePage";
+import MoviePage from "./pages/MoviePage";
 
 function App() {
   return (
@@ -12,11 +13,13 @@ function App() {
       <NavBar />
       <Switch>
         <Route
-          path="/pages/DiscoverMoviesPage"
+          exact
+          path="/DiscoverMoviesPage"
           component={DiscoverMoviesPage}
         />
-        <Route path="/pages/AboutPage" component={AboutPage} />
-        <Route path="/pages/HomePage" component={HomePage} />
+        <Route path="/AboutPage" component={AboutPage} />
+        <Route exact path="/" component={HomePage} />
+        <Route path="/DiscoverMoviesPage/:imdb_id" component={MoviePage} />
       </Switch>
     </div>
   );

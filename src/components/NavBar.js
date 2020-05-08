@@ -8,7 +8,7 @@ export default function NavBar() {
         <ul>
           <li>
             <NavLink
-              to="../pages/AboutPage"
+              to="/AboutPage"
               activeStyle={{ fontWeight: "bold", color: "pink" }}
             >
               About
@@ -17,7 +17,7 @@ export default function NavBar() {
           <li>
             <NavLink
               exact
-              to="../pages/"
+              to="/"
               activeStyle={{ fontWeight: "bold", color: "pink" }}
             >
               Home Page
@@ -25,7 +25,7 @@ export default function NavBar() {
           </li>
           <li>
             <NavLink
-              to="../pages/DiscoverMoviesPage"
+              to="/DiscoverMoviesPage"
               activeStyle={{ fontWeight: "bold", color: "pink" }}
             >
               Discover Movies
